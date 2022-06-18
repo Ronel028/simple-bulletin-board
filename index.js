@@ -1,7 +1,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const path = require("path")
+const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -18,7 +18,7 @@ app.use('/script', express.static(path.join(__dirname, './public/script')))
 app.set("view engine", "ejs");
 
 app.get("/", (req, res)=>{
-    res.render("index");
+    res.render(path.join(__dirname, './views/index.ejs'));
 })
 
 app.listen(PORT, ()=>{
