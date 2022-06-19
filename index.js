@@ -17,9 +17,18 @@ app.use('/script', express.static(path.join(__dirname, './public/script')))
 // set template engine
 app.set("view engine", "ejs");
 
-app.get("/", (req, res)=>{
-    res.render(path.join(__dirname, './views/index.ejs'));
-})
+// routes
+app.use("/", require("./routes/mainRoutes"))
+
+// database connection
+const connectionDB = require("./database/connection");
+connectionDB.getConnection((err) => {
+    if(err){
+      console.log('Error connecting to Db');
+      return;
+    }
+    console.log('Connection established');
+  });
 
 app.listen(PORT, ()=>{
     console.log("Server Started at PORT: ", PORT)
