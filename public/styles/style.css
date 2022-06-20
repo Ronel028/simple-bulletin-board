@@ -9,6 +9,12 @@ body {
   background-color: aquamarine;
 }
 
+header {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+}
+
 #close-icon {
   top: 5%;
   right: 8%;
