@@ -50,7 +50,8 @@ let displayData = async()=>{
       method: 'get',
       url: '/displayArticle'
    })
-   articleContainer.innerHTML = displayToUi(display.data);
+   let dataResponse = await display.data
+   articleContainer.innerHTML = displayToUi(dataResponse);
 }
 
 
