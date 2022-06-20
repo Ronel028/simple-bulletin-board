@@ -15,3 +15,10 @@ closeBtn.addEventListener("click", ()=>{
    addNewForm.classList.remove("d-flex")
    addNewForm.classList.add("d-none")
 })
+
+
+// use axios to fetch data
+axios.get("https://jsonplaceholder.typicode.com/todos")
+.then(response =>{
+   console.log(response.data)
+})

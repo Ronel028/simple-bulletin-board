@@ -22,14 +22,10 @@ app.use("/", require("./routes/mainRoutes"))
 
 // database connection
 const connectionDB = require("./database/connection");
-connectionDB.getConnection((err) => {
-    if(err){
-      console.log('Error connecting to Db');
-      return;
-    }
-    console.log('Connection established');
-  });
+connectionDB;
 
+
+// listening to port
 app.listen(PORT, ()=>{
     console.log("Server Started at PORT: ", PORT)
 })
