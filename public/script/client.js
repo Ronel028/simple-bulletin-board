@@ -24,39 +24,34 @@ let description = document.querySelector("#input-description");
 let content = document.querySelector("#input-content");
 let articleContainer = document.querySelector("#article-container");
 
-form.addEventListener("submit", (e)=>{
+form.addEventListener("submit", async (e)=>{
    e.preventDefault();
-
-   insertData(title, description, content);
-   console.log("Save success")
-   displayData();
-})
-// insert function
-let insertData = async(inputTitle, inputDescription, inputContent)=>{
 
    let insertData = await fetch('/insertData', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-         title: inputTitle.value,
-         description: inputDescription.value,
-         content: inputContent.value
+         'title': title.value,
+         'description': description.value,
+        'content': content.value
       })
    })
-   return insertData;
-}
+   let dataInserted = await insertData.json();
+   console.log(dataInserted);
+   displayData();
+   console.log("Save success")
+})
+
 
 // display function
 let displayData = async()=>{
-   let displayData = await fetch('/displayArticle',{
-      method: 'get'
-   })
-   
-   let dataResponse = await displayData.json()
+
+   let display = await fetch('/displayArticle')
+   let dataResponse = await display.json();
    console.log(dataResponse)
    articleContainer.innerHTML = displayToUi(dataResponse);
 }
-
+displayData();
 
 let displayToUi = (article)=>{
     let articleContent = "";
@@ -78,5 +73,3 @@ let displayToUi = (article)=>{
     });
     return articleContent;
 }
-
-displayData();
