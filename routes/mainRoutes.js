@@ -11,7 +11,7 @@ router.get("/", (req, res)=>{
 
 
  // insert data to database
-router.post('/', async (req, res)=>{
+router.post('/insertData', async (req, res)=>{
 
     try {
         let date = new Date().toLocaleString();

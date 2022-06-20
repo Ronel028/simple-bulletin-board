@@ -64,23 +64,23 @@
 
         <!-- create article form -->
         <div id="add-new-form" class="w-100 vh-100 h-auto bg-primary bg-opacity-25 position-absolute top-0 start-0 d-none justify-content-center align-items-center">
-            <form action="" class="w-50 bg-success text-white p-5 rounded position-relative">
+            <form action="" id="form" class="w-50 bg-success text-white p-5 rounded position-relative">
                 <div id="close-icon" class="close-icon position-absolute">
                     <i class="fa-solid fa-rectangle-xmark"></i>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Article Title</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter title...">
+                    <label for="input-title" class="form-label">Article Title</label>
+                    <input type="text" class="form-control" id="input-title" placeholder="Enter title...">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Article Short Description</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter short description of your article...">
+                    <label for="input-description" class="form-label">Article Short Description</label>
+                    <input type="text" class="form-control" id="input-description" placeholder="Enter short description of your article...">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Article Content</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <label for="input-content" class="form-label">Article Content</label>
+                    <textarea class="form-control" id="input-content" rows="3"></textarea>
                 </div>
-                <button class="btn btn-primary">POST</button>
+                <button type="submit" class="btn btn-primary">POST</button>
             </form>
         </div>
        

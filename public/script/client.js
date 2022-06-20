@@ -1,4 +1,5 @@
 
+
 console.log("Hello World")
 
 let addNewBtn = document.querySelector("#add-new-article");
@@ -17,8 +18,26 @@ closeBtn.addEventListener("click", ()=>{
 })
 
 
-// use axios to fetch data
-axios.get("https://jsonplaceholder.typicode.com/todos")
-.then(response =>{
-   console.log(response.data)
+let form = document.querySelector("#form");
+let title = document.querySelector("#input-title");
+let description = document.querySelector("#input-description");
+let content = document.querySelector("#input-content");
+
+form.addEventListener("submit", (e)=>{
+   e.preventDefault();
+
+   insertData(title, description, content);
 })
+// use axios to fetch data
+let insertData = async(inputTitle, inputDescription, inputContent)=>{
+   let insert = await axios({
+      method: 'post',
+      url: '/insertData',
+      data: {
+        title: inputTitle.value,
+        description: inputDescription.value,
+        content: inputContent.value
+      }
+    });
+   console.log(insert);
+}
