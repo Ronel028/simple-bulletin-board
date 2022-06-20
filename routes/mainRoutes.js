@@ -4,6 +4,7 @@ const path = require("path")
 const router = express.Router();
 
 const create = require("../database/services/create");
+const dislay = require("../database/services/read");
 
 router.get("/", (req, res)=>{
     res.render(path.join(__dirname, '../views/index.ejs'));
@@ -20,6 +21,20 @@ router.post('/insertData', async (req, res)=>{
         let insertData = await create(title, description, content, date);
         console.log(insertData);
         res.json({message: "Save Succesfully"});
+
+    } catch (error) {
+        console.log(error)
+    }
+
+})
+
+// display data to database
+router.get('/displayArticle', async (req, res)=>{
+
+    try {
+        let displayData = await dislay();
+        console.log(displayData);
+        res.json(displayData);
 
     } catch (error) {
         console.log(error)
