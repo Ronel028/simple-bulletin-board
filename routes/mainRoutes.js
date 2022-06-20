@@ -30,12 +30,12 @@ router.post('/insertData', async (req, res)=>{
 
 // display data to database
 router.get('/displayArticle', async (req, res)=>{
-
+    
     try {
-        let displayData = await dislay();
-        console.log(displayData);
-        res.json(displayData);
-
+        let dataDisplay = await dislay();
+        console.log(dataDisplay);
+        res.json(dataDisplay);
+    
     } catch (error) {
         console.log(error)
     }
