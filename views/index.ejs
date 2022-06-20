@@ -15,14 +15,14 @@
     <title>Simple Bulletin Board</title>
 </head>
 <body>
-    <header class="vh-100 bg-secondary p-5">
+    <header class="bg-secondary p-5">
         <div class="container mb-3">
             <h1 class="text-light mb-3">Articles</h1>
             <button type="button" id="add-new-article" class="btn btn-info text-light">Create New Article</button>
         </div>
         <div class="container">
-            <ul class="list-unstyled d-flex flex-wrap gap-3">
-                <li>
+            <ul id="article-container" class="list-unstyled d-flex flex-wrap gap-3">
+                <!-- <li>
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">Article Title</h5>
@@ -57,7 +57,7 @@
                             <a href="#" class="btn btn-danger text-light">Delete</a>
                         </div>
                     </div>
-                </li>
+                </li> -->
             </ul>
           
         </div>
