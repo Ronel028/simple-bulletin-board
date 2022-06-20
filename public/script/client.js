@@ -41,7 +41,7 @@ let insertData = async(inputTitle, inputDescription, inputContent)=>{
         content: inputContent.value
       }
     });
-   console.log(insert);
+   return insert;
 }
 
 // display function
@@ -50,8 +50,6 @@ let displayData = async()=>{
       method: 'get',
       url: '/displayArticle'
    })
-
-   console.log(display)
    articleContainer.innerHTML = displayToUi(display.data);
 }
 
