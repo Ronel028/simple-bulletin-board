@@ -28,29 +28,32 @@ form.addEventListener("submit", (e)=>{
    e.preventDefault();
 
    insertData(title, description, content);
+   console.log("Save success")
    displayData();
 })
 // insert function
 let insertData = async(inputTitle, inputDescription, inputContent)=>{
-   let insert = await axios({
-      method: 'post',
-      url: '/insertData',
-      data: {
-        title: inputTitle.value,
-        description: inputDescription.value,
-        content: inputContent.value
-      }
-    });
-   return insert;
+
+   let insertData = await fetch('/insertData', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+         title: inputTitle.value,
+         description: inputDescription.value,
+         content: inputContent.value
+      })
+   })
+   return insertData;
 }
 
 // display function
 let displayData = async()=>{
-   let display = await axios({
-      method: 'get',
-      url: '/displayArticle'
+   let displayData = await fetch('/displayArticle',{
+      method: 'get'
    })
-   let dataResponse = await display.data
+   
+   let dataResponse = await displayData.json()
+   console.log(dataResponse)
    articleContainer.innerHTML = displayToUi(dataResponse);
 }
 
