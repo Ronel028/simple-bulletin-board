@@ -41,19 +41,19 @@ form.addEventListener("submit", async (e)=>{
       addNewForm.classList.remove("d-flex");
       addNewForm.classList.add("d-none");
       let dataInserted = await insertData.json();
+      await displayData();
       if(dataInserted.message === "Save Succesfully"){
          document.querySelector("#save-success").classList.remove("d-none");
          setTimeout(()=>{
             document.querySelector("#save-success").classList.add("d-none");
-         }, 1000)
+         }, 2000)
       }
       else if(dataInserted.message === "Save Error"){
          document.querySelector("#save-error").classList.remove("d-none");
          setTimeout(()=>{
             document.querySelector("#save-error").classList.add("d-none");
-         }, 1000)
+         }, 2000)
       }
-      displayData();
    }
 })
 
@@ -90,10 +90,12 @@ let displayToUi = (article)=>{
 
 // delete function
 let deleteArticle = async (id)=>{
+   document.querySelector("#delete-loading").classList.remove("d-none")
    let deleteData = await fetch(`/deleteData?id=${id}`, {
       method: "DELETE"
    })
    let responseDelete = await deleteData.json();
-   displayData();
+   await displayData();
+   document.querySelector("#delete-loading").classList.add("d-none")
    console.log(responseDelete);
 }
