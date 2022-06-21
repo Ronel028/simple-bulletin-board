@@ -1,7 +1,5 @@
 
 
-console.log("Hello World")
-
 let addNewBtn = document.querySelector("#add-new-article");
 let addNewForm = document.querySelector("#add-new-form");
 const closeBtn = document.querySelector("#close-icon");
@@ -24,22 +22,39 @@ let description = document.querySelector("#input-description");
 let content = document.querySelector("#input-content");
 let articleContainer = document.querySelector("#article-container");
 
+// form
 form.addEventListener("submit", async (e)=>{
    e.preventDefault();
-
-   let insertData = await fetch('/insertData', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-         'title': title.value,
-         'description': description.value,
-        'content': content.value
+   if(title.value === "" || description.value === "" || content.value === ""){
+      return;
+   }
+   else{
+      let insertData = await fetch('/insertData', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({
+            'title': title.value,
+            'description': description.value,
+           'content': content.value
+         })
       })
-   })
-   let dataInserted = await insertData.json();
-   console.log(dataInserted);
-   displayData();
-   console.log("Save success")
+      addNewForm.classList.remove("d-flex");
+      addNewForm.classList.add("d-none");
+      let dataInserted = await insertData.json();
+      if(dataInserted.message === "Save Succesfully"){
+         document.querySelector("#save-success").classList.remove("d-none");
+         setTimeout(()=>{
+            document.querySelector("#save-success").classList.add("d-none");
+         }, 1000)
+      }
+      else if(dataInserted.message === "Save Error"){
+         document.querySelector("#save-error").classList.remove("d-none");
+         setTimeout(()=>{
+            document.querySelector("#save-error").classList.add("d-none");
+         }, 1000)
+      }
+      displayData();
+   }
 })
 
 
@@ -48,7 +63,6 @@ let displayData = async()=>{
 
    let display = await fetch('/displayArticle')
    let dataResponse = await display.json();
-   console.log(dataResponse)
    articleContainer.innerHTML = displayToUi(dataResponse);
 }
 displayData();
