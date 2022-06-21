@@ -65,11 +65,21 @@ let displayToUi = (article)=>{
                      <p class="card-text">${art.article_subtitle}</p>
                      <a href="#" class="btn btn-info text-light">Read More</a>
                      <a href="#" class="btn btn-warning text-light">Edit</a>
-                     <a href="#" class="btn btn-danger text-light">Delete</a>
+                     <a onclick="deleteArticle(${art.id})" class="btn btn-danger text-light">Delete</a>
                   </div>
                </div>
          </li>
         `
     });
     return articleContent;
+}
+
+// delete function
+let deleteArticle = async (id)=>{
+   let deleteData = await fetch(`/deleteData?id=${id}`, {
+      method: "DELETE"
+   })
+   let responseDelete = await deleteData.json();
+   displayData();
+   console.log(responseDelete);
 }
