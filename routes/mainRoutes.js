@@ -16,13 +16,19 @@ router.get("/", (req, res)=>{
 router.post('/insertData', async (req, res)=>{
 
     try {
-        let date = new Date().toLocaleString();
+        let date = new Date().toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) 
         let { title, description, content} = req.body;
-
-        let insertData = await create(title, description, content, date);
-        res.json({message: "Save Succesfully"});
+        await create(title, description, content, date);
+        res.json({
+            message: "Save Succesfully",
+            status: 200
+        });
 
     } catch (error) {
+        res.json({
+            message: "Save Error",
+            error: error
+        })
         console.log(error)
     }
 
